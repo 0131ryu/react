@@ -1,75 +1,77 @@
+/*eslint-disable*/ 
+
 import React, { useState } from 'react';
+import logo from './logo.svg';
 import './App.css';
-import photo1 from './images/spring.jpg';
-import photo2 from './images/summer.jpg';
-import photo3 from './images/autumn.jpg';
-import photo4 from './images/winter.jpg';
 
 function App() {
+  let posts = '강남 고기 맛집';
+  let fontStyle = {color: 'yellow', fontSize: '20px'}
 
-  let [title, titleChange] = useState(['서울 날씨', '부산 날씨', '인천 날씨']);
-  let [season, seasonChange] = useState(['봄', '여름', '가을', '겨울']);
-  let [heart, heartChange] = useState(0);
-  let [heart2, heart2Change] = useState(0);
-  let [heart3, heart3Change] = useState(0);
-  let [heart4, heart4Change] = useState(0);
+  let [글제목, 글제목변경] =  useState(['남자 코트 추천2', '여자 코트 추천2', '아동 코트 추천']); 
+  let [따봉, 따봉변경] = useState(0);
+  let [코트, 코트변경] = useState(['여자코트 추천', '아동코트 추천']);
 
-  function 제목정렬() {
-    var newTitle = [...title];
-    newTitle = newTitle.sort();
-    titleChange (newTitle);
+  function 제목바꾸기() {
+    //글제목에 있던 0번째 데이터를 여자코트 추천으로 바꿈
+    var newArray = [...글제목]; //reference data type
+    newArray[0] = '여자코트추천';
+    글제목변경 ( newArray );
+    //글제목변경(['여자코트 추천', '블랙코트 추천', '브라운코트 추천']);
   }
 
-  function 첫번째제목바꾸기() {
-    var changeTitle1 = [...title];
-    changeTitle1[0] = '강원도 날씨';
-    titleChange(changeTitle1);
+  function 정렬하기() {
+    var newArray2 = [...글제목];
+    newArray2 = newArray2.sort();
+    글제목변경 (newArray2);
+    
   }
-  function 두번째제목바꾸기() {
-    var changeTitle2 = [...title];
-    changeTitle2[1] = '대전 날씨';
-    titleChange (changeTitle2);
+
+  function 오름차순() {
+    const arr = [5, 10, 20];
+    console.log(arr); 
+
+    arr.sort((a, b) => a - b);
+    console.log(arr); //[5, 20, 100]
   }
-  function 전체제목바꾸기() {
-    var changeTitle = [...title];
-    changeTitle = (['대구 날씨', '대전 날씨', '광주 날씨']);
-    titleChange (changeTitle);
+
+  function 내림차순() {
+    const arr2 = [5, 10, 20];
+    console.log(arr2);
+
+    arr2.sort((a, b) => b - a) 
+    console.log(arr2);
+  }
+
+  function 문자배열() {
+    const arr3 = ['lemon', 'apple', 'orange'];
+    console.log(arr3);
+
+    arr.sort((a, b) => a.length - b.length);
+    console.log(arr); //['apple', 'lemon', 'orange']
   }
 
   return (
     <div className="App">
-        <div className="navbar">
-            <div>React 개발블로그</div>
+        <div className="black-nav">
+            <div style= { fontStyle }>개발 Blog</div>
         </div>
-        <div className="imgArr">
-          <img className="spring" src={photo1} />
-          <img className="summer" src={photo2} />
-          <img className="autumn" src={photo3} />
-          <img className="winter" src={photo4} />
-        </div>
-        <div className="season">
-        <h4 className="springName">{season[0]} <span onClick={ () => {heartChange(heart + 1)}} >💕</span>{heart}</h4>
-        <h4 className="summerName">{season[1]} <span onClick={ () => {heart2Change(heart2 + 1)}} >💕</span>{heart2}</h4>
-        <h4 className="autumnName">{season[2]} <span onClick={ () => {heart3Change(heart3 + 1)}} >💕</span>{heart3}</h4>
-        <h4 className="winterName">{season[3]}<span onClick={ () => {heart4Change(heart4 + 1)}} >💕</span>{heart4}</h4>
-        </div>
-        <button onClick={제목정렬} className="titleSort">제목 정렬하기</button>
-        <button onClick={첫번째제목바꾸기} className="changeTitle1">첫번째 제목 바꾸기</button>
-        <button onClick={두번째제목바꾸기} className="changeTitle2">두번째 제목 바꾸기</button>
-        <button onClick={전체제목바꾸기} className="changeAllTitle">전체 제목 바꾸기</button>
-        <div className="blogList">
-        <h4> { title[0] } </h4>
-        <p>1월 1일 발행</p>
+        <div className="list">
+        <button onClick={ 제목바꾸기 }>바꾸기</button>
+        <button onClick={ 정렬하기 }>정렬하기</button>
+        <h4> { 글제목[0] } <span onClick={ () => { 따봉변경(따봉 + 1) } }>👍</span>
+         { 따봉 } </h4>
+        <p>8월 25일 발행</p>
         <hr/>
         </div>
-        <div className="blogList">
-        <h4> { title[1] } </h4>
-        <p>2월 2일 발행</p>
+        <div className="list">
+        <h4> { 글제목[1] } </h4>
+        <p>2월 17일 발행</p>
         <hr/>
         </div>
-        <div className="blogList">
-        <h4> { title[2] } </h4>
-        <p>3월 3일 발행</p>
+        <div className="list">
+        <h4> { 글제목[2] } </h4>
+        <p>2월 19일 발행</p>
         <hr/>
         </div>
     </div>

@@ -1,84 +1,23 @@
 .App {
   text-align: center;
 }
-.navbar {
+body {
+  font-family: "nanumsquare";
+}
+.black-nav {
   background: black;
-  color: #33ffff;
-  font-size: 20px;
   width: 100%;
   display: flex;
+  color: white;
   padding: 20px;
+  font-weight: 600;
+  font-size: 20px;
 }
-.imgArr {
-  width: 90%;
-  margin: 30px auto;
-  display: flex;
-}
-.spring {
-  flex: 1;
-  box-sizing: border-box;
-}
-.springName {
-  text-align: left;
-  margin-left: 180px;
-  margin-top: -10px;
-}
-.summer {
-  flex: 1;
-  box-sizing: border-box;
-  margin: 0px 5%;
-}
-.summerName {
-  text-align: left;
-  margin-top: -40px;
-  margin-left: 520px;
-}
-.autumn {
-  flex: 1;
-  box-sizing: border-box;
-}
-.autumnName {
-  text-align: right;
-  margin-top: -45px;
-  margin-right: 600px;
-}
-.winter {
-  flex: 1;
-  box-sizing: border-box;
-  margin: 0px 5%;
-}
-.winterName {
-  text-align: right;
-  margin-top: -45px;
-  margin-right: 250px;
-}
-img {
-  width: 200px;
-  height: 100px;
-}
-button {
-  padding: 5px;
-  margin: 10px;
-}
-.titleSort {
-  background-color: purple;
-  color: white;
-}
-.changeTitle1 {
-  background-color: pink;
-}
-.changeTitle2 {
-  background-color: green;
-  color: white;
-}
-.changeAllTitle {
-  background-color: yellow;
-}
-.blogList {
-  text-align: left;
+.list {
   margin-top: 30px;
-  margin-left: 30px;
-  margin-right: 30px;
+  text-align: left;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 .App-logo {
   height: 40vmin;
