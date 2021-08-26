@@ -12,6 +12,10 @@ function App() {
   let [따봉, 따봉변경] = useState(0);
   let [코트, 코트변경] = useState(['여자코트 추천', '아동코트 추천']);
 
+  let [modal, modal변경] = useState(false); //모달창을 켜고 닫는 스위치
+
+  let [누른제목, 누른제목변경] = useState(0);
+
   function 제목바꾸기() {
     //글제목에 있던 0번째 데이터를 여자코트 추천으로 바꿈
     var newArray = [...글제목]; //reference data type
@@ -51,6 +55,14 @@ function App() {
     console.log(arr); //['apple', 'lemon', 'orange']
   }
 
+  function 반복된UI() {
+    var array2 = [];
+    for (var i = 0; i < 3; i++) {
+      array2.push(<div>안녕</div>);
+    }
+    return array2
+  }
+
   return (
     <div className="App">
         <div className="black-nav">
@@ -74,8 +86,51 @@ function App() {
         <p>2월 19일 발행</p>
         <hr/>
         </div>
+
+     
+
+      {  반복된UI() }
+
+      {
+
+        //3번 반복
+        글제목.map(function(글, i) { //글 = array 안에 있던 하나하나의 데이터
+          return (
+                  <div className="list">
+                  <h4 onClick={() => {누른제목변경(i)}} > { 글 } </h4>
+                  <p>2월 17일 발행</p>
+                  <hr/>
+                  </div>
+            )  
+        })
+      }
+
+        {/* <button onClick={() => {누른제목변경(0)}}>버튼1</button>
+        <button onClick={() => {누른제목변경(1)}}>버튼2</button>
+        <button onClick={() => {누른제목변경(2)}}>버튼3</button> */}
+
+        <button onClick= { () => {modal변경(!modal)}}>열고닫기</button>
+        <button onClick= { () => { modal변경(true) } }>모달창 열림</button>
+        <button onClick= { () => { modal변경(false) } }>모달창 닫힘</button>
+
+      {
+        modal === true
+        ? <Modal 글제목={글제목} 누른제목={누른제목}></Modal>
+        : null
+      }
     </div>
+
   );
+}
+
+function Modal(props) { //props = 부모에게 전달받은 props는 여기 다 있음
+  return (
+    <div className="modal">
+          <h2>{ props.글제목[props.누른제목] }</h2>
+          <p>날짜</p>
+          <p>상세내용</p>
+    </div>
+  )
 }
 
 export default App;
