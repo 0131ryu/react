@@ -1,136 +1,157 @@
-/*eslint-disable*/ 
-
 import React, { useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import photo1 from './images/spring.jpg';
+import photo2 from './images/summer.jpg';
+import photo3 from './images/autumn.jpg';
+import photo4 from './images/winter.jpg';
 
 function App() {
-  let posts = '강남 고기 맛집';
-  let fontStyle = {color: 'yellow', fontSize: '20px'}
 
-  let [글제목, 글제목변경] =  useState(['남자 코트 추천2', '여자 코트 추천2', '아동 코트 추천']); 
-  let [따봉, 따봉변경] = useState(0);
-  let [코트, 코트변경] = useState(['여자코트 추천', '아동코트 추천']);
+  let [title, titleChange] = useState(['서울 날씨', '부산 날씨', '인천 날씨']);
+  
+  let [weather, weatherChange] = useState(['맑음', '흐림', '비', '눈', '장마', '천둥번개'])
+  let [star, starChange] = useState(0);
 
-  let [modal, modal변경] = useState(false); //모달창을 켜고 닫는 스위치
+  let [season, seasonChange] = useState(['봄', '여름', '가을', '겨울']);
+  let [heart, heartChange] = useState(0);
+  let [heart2, heart2Change] = useState(0);
+  let [heart3, heart3Change] = useState(0);
+  let [heart4, heart4Change] = useState(0);
 
-  let [누른제목, 누른제목변경] = useState(0);
+  let [pushTitle, pushTitleChange] = useState(0);
+  let [pushWether, pushWetherChange] = useState(0);
 
-  function 제목바꾸기() {
-    //글제목에 있던 0번째 데이터를 여자코트 추천으로 바꿈
-    var newArray = [...글제목]; //reference data type
-    newArray[0] = '여자코트추천';
-    글제목변경 ( newArray );
-    //글제목변경(['여자코트 추천', '블랙코트 추천', '브라운코트 추천']);
+  function 제목정렬() {
+    var newTitle = [...title];
+    newTitle = newTitle.sort();
+    titleChange (newTitle);
   }
 
-  function 정렬하기() {
-    var newArray2 = [...글제목];
-    newArray2 = newArray2.sort();
-    글제목변경 (newArray2);
-    
+  function 첫번째제목바꾸기() {
+    var changeTitle1 = [...title];
+    changeTitle1[0] = '강원도 날씨';
+    titleChange(changeTitle1);
+  }
+  function 두번째제목바꾸기() {
+    var changeTitle2 = [...title];
+    changeTitle2[1] = '대전 날씨';
+    titleChange (changeTitle2);
+  }
+  function 전체제목바꾸기() {
+    var changeTitle = [...title];
+    changeTitle = (['대구 날씨', '대전 날씨', '광주 날씨']);
+    titleChange (changeTitle);
   }
 
-  function 오름차순() {
-    const arr = [5, 10, 20];
-    console.log(arr); 
 
-    arr.sort((a, b) => a - b);
-    console.log(arr); //[5, 20, 100]
+  function Modal1(props) {
+    return (
+      <div className="modal1">
+      <h3>제목 : { props.title[props.pushTitle] }</h3>
+      <p>상세내용 : { props.weather[0] }</p>
+      </div>
+    )
   }
 
-  function 내림차순() {
-    const arr2 = [5, 10, 20];
-    console.log(arr2);
+  let [modal1, modal1Change] = useState(false);
 
-    arr2.sort((a, b) => b - a) 
-    console.log(arr2);
+  function Today(props) {
+    return (
+      <div className="today">
+        <h3>오늘의 날씨 : { props.weather[props.pushWether] } </h3>
+      </div>
+    )
+
   }
 
-  function 문자배열() {
-    const arr3 = ['lemon', 'apple', 'orange'];
-    console.log(arr3);
+  let [today, todayChange] = useState(false);
 
-    arr.sort((a, b) => a.length - b.length);
-    console.log(arr); //['apple', 'lemon', 'orange']
-  }
-
-  function 반복된UI() {
-    var array2 = [];
-    for (var i = 0; i < 3; i++) {
-      array2.push(<div>안녕</div>);
-    }
-    return array2
-  }
+  //예시
+  var array = [2, 3, 4];
+  var newArray = array.map(function(a) { //a : 파라미터, array의 모든 자료 하나씩 출력
+    return a * 10;
+  });
 
   return (
     <div className="App">
-        <div className="black-nav">
-            <div style= { fontStyle }>개발 Blog</div>
+        <div className="navbar">
+            <div>React 개발블로그</div>
         </div>
-        <div className="list">
-        <button onClick={ 제목바꾸기 }>바꾸기</button>
-        <button onClick={ 정렬하기 }>정렬하기</button>
-        <h4> { 글제목[0] } <span onClick={ () => { 따봉변경(따봉 + 1) } }>👍</span>
-         { 따봉 } </h4>
-        <p>8월 25일 발행</p>
-        <hr/>
+        <div className="imgArr">
+          <img className="spring" src={photo1} />
+          <img className="summer" src={photo2} />
+          <img className="autumn" src={photo3} />
+          <img className="winter" src={photo4} />
         </div>
-        <div className="list">
-        <h4> { 글제목[1] } </h4>
-        <p>2월 17일 발행</p>
-        <hr/>
+        <div className="season">
+        <h4 className="springName">{season[0]} <span onClick={ () => {heartChange(heart + 1)}} >💕</span>{heart}</h4>
+        <h4 className="summerName">{season[1]} <span onClick={ () => {heart2Change(heart2 + 1)}} >💕</span>{heart2}</h4>
+        <h4 className="autumnName">{season[2]} <span onClick={ () => {heart3Change(heart3 + 1)}} >💕</span>{heart3}</h4>
+        <h4 className="winterName">{season[3]}<span onClick={ () => {heart4Change(heart4 + 1)}} >💕</span>{heart4}</h4>
         </div>
-        <div className="list">
-        <h4> { 글제목[2] } </h4>
-        <p>2월 19일 발행</p>
-        <hr/>
+        <div className="weatherStandard">[ 날씨 기준 ]<span onClick={ () => {starChange(star + 1)}} >⭐</span>{star}
+        <h4>날씨 정보 : </h4>
+        {
+          weather.map(function(a) {
+            return (
+              <div className="weather">
+              <h4> { a }</h4>
+              </div>
+            )
+          })
+        }
+        </div>
+        <div>
+        <button onClick={제목정렬} className="titleSort">제목 정렬하기</button>
+        <button onClick={첫번째제목바꾸기} className="changeTitle1">첫번째 제목 바꾸기</button>
+        <button onClick={두번째제목바꾸기} className="changeTitle2">두번째 제목 바꾸기</button>
+        <button onClick={전체제목바꾸기} className="changeAllTitle">전체 제목 바꾸기</button>
+        </div>
+        <div>
+        <button onClick={() => {todayChange(!today)}}>오늘의 날씨 열고닫기</button>
+        <button onClick={() => {pushWetherChange(1)}}>날씨 변경하기1</button>
+        <button onClick={() => {pushWetherChange(3)}}>날씨 변경하기2</button>
+        {/* <button onClick={() => {todayChange(true)}}>오늘의 날씨 열기</button>
+        <button onClick={() => {todayChange(false)}}>오늘의 날씨 닫기</button> */}
         </div>
 
-     
+        {
+          today === true
+          ? <Today weather={weather} pushWether={pushWether} />
+          : null
+        }
+        
+        {
+          title.map(function(a, i){ //i가 숫자 하나씩 증가하게 함
+            return (
+              <div className="blogList">
+              <h4 className="blogListTitle" onClick={() => {pushTitleChange(i)} }> { a } </h4>
+              <p>1월 1일 발행</p>
+              <hr/>
+              </div>
+            )
+          })
+        }
+        
+        
+        <div>
+        {/* <button onClick={() => {modal1Change(true)}}>Modal1 열기</button>
+        <button onClick={() => {modal1Change(false)}}>Modal1 닫기</button> */}
+        <button onClick={() => {modal1Change(!modal1)}}>Modal1 열고닫기</button>
+        </div>
+        {/* <button onClick={() => {pushTitleChange(0)}}>title1</button>
+        <button onClick={() => {pushTitleChange(1)}}>title2</button>
+        <button onClick={() => {pushTitleChange(2)}}>title3</button> */}
+        {
+          modal1 === true
+          ? <Modal1 title={title} pushTitle={pushTitle} weather={weather}/>
+          : null
+        }
+      
 
-      {  반복된UI() }
-
-      {
-
-        //3번 반복
-        글제목.map(function(글, i) { //글 = array 안에 있던 하나하나의 데이터
-          return (
-                  <div className="list">
-                  <h4 onClick={() => {누른제목변경(i)}} > { 글 } </h4>
-                  <p>2월 17일 발행</p>
-                  <hr/>
-                  </div>
-            )  
-        })
-      }
-
-        {/* <button onClick={() => {누른제목변경(0)}}>버튼1</button>
-        <button onClick={() => {누른제목변경(1)}}>버튼2</button>
-        <button onClick={() => {누른제목변경(2)}}>버튼3</button> */}
-
-        <button onClick= { () => {modal변경(!modal)}}>열고닫기</button>
-        <button onClick= { () => { modal변경(true) } }>모달창 열림</button>
-        <button onClick= { () => { modal변경(false) } }>모달창 닫힘</button>
-
-      {
-        modal === true
-        ? <Modal 글제목={글제목} 누른제목={누른제목}></Modal>
-        : null
-      }
     </div>
-
+    
   );
-}
-
-function Modal(props) { //props = 부모에게 전달받은 props는 여기 다 있음
-  return (
-    <div className="modal">
-          <h2>{ props.글제목[props.누른제목] }</h2>
-          <p>날짜</p>
-          <p>상세내용</p>
-    </div>
-  )
 }
 
 export default App;
