@@ -1,11 +1,31 @@
 .App {
   text-align: center;
 }
-.background {
-  background-image: url(./background.jpg);
-  background-position: center;
-  background-size: cover;
+.me-auto {
+  z-index: 2;
+}
+.ad {
+  background-image: url("./images/background.jpg");
+  position: absolute;
+  left: 50%;
+  top: 15%;
+  width: 100%;
+  margin-top: 20px;
+  height: 120px;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  line-height: 100px;
+  z-index: 1;
+}
+.firstImg {
+  margin-top: 200px;
+}
+.adTitle {
   color: white;
+  background-color: black;
+  text-align: center;
+  position: relative;
+  top: 40px;
 }
 .App-logo {
   height: 40vmin;
